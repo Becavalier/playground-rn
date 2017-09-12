@@ -43,22 +43,24 @@ Take care of the "Scheme" you set in Xcode:
 ```
 
 ```shell
-# Push updates (includes packaging and pushing)
-code-push release-react PlayRN-IOS ios
-
 # Push updates, seperatly
 mkdir bundles
 
 # Packing
 react-native bundle --platform ios/android --entry-file index.ios.js --bundle-output ./bundles/index.ios.bundle --dev false
 
-# Pushing
+# Pushing 
+code-push release PlayRN-IOS ./bundles -t '1.*' --des "Update for IOS app."
+
+# Push updates altogether (includes packaging and pushing)
 code-push release-react PlayRN-IOS ios/android -t '1.*' -d Production --des 'Update for IOS app.'
 ```
 
 ```shell
 # Log
 code-push deployment history PlayRN-IOS Staging/Production
+# Remove app from current code-push account
+code-push app remove playRN-IOS
 ```
 
 #### Custimized Server
